@@ -35,17 +35,18 @@ toolkit:
 inputs:
   - linting_path: $BITRISE_SOURCE_DIR
     opts:
-      category: Linting configuration
+      category: Config
       title: "Select the path where Swiftlint should lint"
       summary: ""
       description: ""
+      is_required: true
 
   - lint_config_file: $BITRISE_SOURCE_DIR/.swiftlint.yml
     opts:
-      category: Linting configuration
+      category: Config
       title: "Linting configuration file"
       summary: ""
       description: |-
         If you use a custom linting configuration for Bitrise, you can specify the path here. 
-
+      is_required: false
 outputs:
