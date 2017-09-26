@@ -33,5 +33,19 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  
+  - linting_path: $BITRISE_PROJECT_PATH
+    opts:
+      category: Linting configuration
+      title: "Select the path where Swiftlint should lint"
+      summary: ""
+      description: ""
+
+  - lint_config_file: $BITRISE_PROJECT_PATH/.swiftlint.yml
+    opts:
+      category: Linting configuration
+      title: "Linting configuration file"
+      summary: ""
+      description: |-
+        If you use a custom linting configuration for Bitrise, you can specify the path here. 
+
 outputs:
