@@ -10,7 +10,7 @@ fi
 cd "${linting_path}"
 
 if [ -z "${lint_config_file}" ] ; then
-  	swiftlint lint --config "${lint_config_file}"
+  	swiftlint lint --config "${lint_config_file}" --reporter "${reporter}"
 else
-	swiftlint lint
+	swiftlint lint --reporter --reporter "${reporter}"
 fi

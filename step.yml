@@ -49,4 +49,18 @@ inputs:
       description: |-
         If you use a custom linting configuration for Bitrise, you can specify the path here. 
       is_required: false
+  - reporter: xcode
+   opts:
+     category: Config
+     description: |-
+        Sets the reporter style when printing violations or errors.
+     summary: ""
+     title: Select method for export
+     value_options:
+     - xcode
+     - json
+     - csv
+     - checkstyle
+     - junit
+     - emoji
 outputs:
