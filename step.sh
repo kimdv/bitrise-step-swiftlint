@@ -12,5 +12,5 @@ cd "${linting_path}"
 if [ -z "${lint_config_file}" ] ; then
   	swiftlint lint --config "${lint_config_file}" --reporter "${reporter}"
 else
-	swiftlint lint --reporter --reporter "${reporter}"
+	swiftlint lint --reporter "${reporter}"
 fi
