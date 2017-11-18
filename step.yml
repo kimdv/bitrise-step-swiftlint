@@ -65,8 +65,8 @@ inputs:
       - junit
       - emoji
 
-  - strict:
-    opts: "no"
+  - strict: "no"
+    opts:
       category: Config
       description: |-
         Use strict mode when linting (i.e. warnings become errors)
