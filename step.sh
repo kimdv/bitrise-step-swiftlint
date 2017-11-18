@@ -18,7 +18,7 @@ cd "${linting_path}"
 if [ -z "${lint_config_file}" ] ; then
   CONFIG_FLAG=
 else
-  CONFIG_FLAG=	--'config' "${lint_config_file}"
+  CONFIG_FLAG='--config "${lint_config_file}"' 
 fi
 
 swiftlint lint ${CONFIG_FLAG} --reporter "${reporter}" ${STRICT_FLAG}
