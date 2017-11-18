@@ -65,7 +65,7 @@ inputs:
       - junit
       - emoji
 
-  - strict: no
+  - strict: "no"
     opts:
       category: Config
       description: |-
