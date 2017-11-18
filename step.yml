@@ -47,7 +47,7 @@ inputs:
       title: "Linting configuration file"
       summary: ""
       description: |-
-        If you use a custom linting configuration for Bitrise, you can specify the path here. 
+        If you use a custom linting configuration for Bitrise, you can specify the path here.
       is_required: false
 
   - reporter: xcode
@@ -64,4 +64,16 @@ inputs:
       - checkstyle
       - junit
       - emoji
+
+  - strict: no
+    opts:
+      category: Config
+      description: |-
+        Use strict mode when linting (i.e. warnings become errors)
+      is_required: false
+      summary: ""
+      title: Use strict mode
+      value_options:
+      - yes
+      - no
 outputs:
