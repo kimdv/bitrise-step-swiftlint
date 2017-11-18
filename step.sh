@@ -7,18 +7,16 @@ if [ -z "${linting_path}" ] ; then
   exit 1
 fi
 
-if [ "${strict}" = "no" ] ; then
-  STRICT_FLAG=
-else
-  STRICT_FLAG='--strict'
+FLAGS=''
+
+if [ "${strict}" = "yes" ] ; then
+  FLAGS=$FLAGS' --strict'
+fi
+
+if [ -s "${lint_config_file}" ] ; then
+  FLAGS=$FLAGS' --config '"${lint_config_file}"  
 fi
 
 cd "${linting_path}"
 
-if [ -z "${lint_config_file}" ] ; then
-  CONFIG_FLAG=
-else
-  CONFIG_FLAG='--config "${lint_config_file}"' 
-fi
-
-swiftlint lint ${CONFIG_FLAG} --reporter "${reporter}" ${STRICT_FLAG}
+swiftlint lint --reporter "${reporter}" ${FLAGS}
