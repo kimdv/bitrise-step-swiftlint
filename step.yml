@@ -74,6 +74,6 @@ inputs:
       summary: ""
       title: Use strict mode
       value_options:
-      - yes
-      - no
+      - "yes"
+      - "no"
 outputs:
