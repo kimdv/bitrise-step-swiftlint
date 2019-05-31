@@ -44,9 +44,10 @@ inputs:
   - lint_range:
     opts:
       category: Config
-      title: "Lint changed files only"
+      title: "Select option for range of Swiftlint"
       summary: ""
-      description: ""
+      description: |-
+        Take the git diff and only lint those files
       is_required: true
       value_options:
       - "all"
