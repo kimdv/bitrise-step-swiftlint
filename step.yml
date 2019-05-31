@@ -33,7 +33,7 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  - linting_path:
+  - linting_path: /Users/y8k/Development/WisdomConcert-iOS
     opts:
       category: Config
       title: "Select the path where Swiftlint should lint"
@@ -41,7 +41,18 @@ inputs:
       description: ""
       is_required: true
 
-  - lint_config_file: $BITRISE_SOURCE_DIR/.swiftlint.yml
+  - lint_range: "all"
+    opts:
+      category: Config
+      title: "Lint changed files only"
+      summary: ""
+      description: ""
+      is_required: true
+      value_options:
+      - "all"
+      - "changed"
+
+  - lint_config_file: /Users/y8k/Development/WisdomConcert-iOS/.swiftlint.yml
     opts:
       category: Config
       title: "Linting configuration file"
@@ -50,7 +61,7 @@ inputs:
         If you use a custom linting configuration for Bitrise, you can specify the path here.
       is_required: false
 
-  - reporter: xcode
+  - reporter: json
     opts:
       category: Config
       description: |-
@@ -65,7 +76,7 @@ inputs:
       - junit
       - emoji
 
-  - strict: "no"
+  - strict: "yes"
     opts:
       category: Config
       description: |-
