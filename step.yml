@@ -52,7 +52,7 @@ inputs:
       - "all"
       - "changed"
 
-  - lint_config_file: /Users/y8k/Development/WisdomConcert-iOS/.swiftlint.yml
+  - lint_config_file: $BITRISE_SOURCE_DIR/.swiftlint.yml
     opts:
       category: Config
       title: "Linting configuration file"
@@ -61,7 +61,7 @@ inputs:
         If you use a custom linting configuration for Bitrise, you can specify the path here.
       is_required: false
 
-  - reporter: json
+  - reporter: xcode
     opts:
       category: Config
       description: |-
@@ -76,7 +76,7 @@ inputs:
       - junit
       - emoji
 
-  - strict: "yes"
+  - strict: "no"
     opts:
       category: Config
       description: |-
