@@ -1,8 +1,6 @@
 #!/bin/bash
 set -ex
 
-echo "${linting_path}"
-
 run_swiftlint() {
     local filename="${1}"
     local reporter="${2}"

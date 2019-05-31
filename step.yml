@@ -33,7 +33,7 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  - linting_path: /Users/y8k/Development/WisdomConcert-iOS
+  - linting_path:
     opts:
       category: Config
       title: "Select the path where Swiftlint should lint"
@@ -41,7 +41,7 @@ inputs:
       description: ""
       is_required: true
 
-  - lint_range: "all"
+  - lint_range:
     opts:
       category: Config
       title: "Lint changed files only"
