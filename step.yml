@@ -70,12 +70,16 @@ inputs:
       summary: ""
       title: Select method for export
       value_options:
-      - xcode
-      - json
       - csv
       - checkstyle
-      - junit
       - emoji
+      - github-actions-logging
+      - html
+      - json
+      - junit
+      - markdown
+      - sonarqube
+      - xcode
 
   - strict: "no"
     opts:
