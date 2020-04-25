@@ -41,6 +41,18 @@ inputs:
       description: ""
       is_required: true
 
+  - lint_range:
+    opts:
+      category: Config
+      title: "Select option for range of Swiftlint"
+      summary: ""
+      description: |-
+        Take the git diff and only lint those files
+      is_required: true
+      value_options:
+      - "all"
+      - "changed"
+
   - lint_config_file: $BITRISE_SOURCE_DIR/.swiftlint.yml
     opts:
       category: Config
