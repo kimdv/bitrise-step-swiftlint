@@ -10,7 +10,15 @@ import Foundation
 
 extension Test {
 
-    func foo() {  // Wrong
-        let date = Date() //    Wrong first on 25th place
+    /// Failing example
+    func getURL() -> URL {
+        let url = URL(string: "some.string")!
+        return url
+    }
+
+    /// Non-failing example
+    func getURL() -> URL? {
+        let url = URL(string: "some.string")
+        return url
     }
 }

@@ -29,6 +29,11 @@ workflows:
         description: |-
           Running the Swiftlint test
         run_if: true
+        inputs:
+        - linting_path: .
+        - lint_range: all
+        - lint_config_file: $BITRISE_SOURCE_DIR/TestConfig/.swiftlint.yml
+        - reporter: html
 
   # ----------------------------------------------------------------
   # --- workflows to Share this step into a Step Library

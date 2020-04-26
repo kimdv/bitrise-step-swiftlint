@@ -1,6 +1,7 @@
 disabled_rules: # rule identifiers to exclude from running
 
 opt_in_rules: # some rules are only opt-in
+  - force_unwrapping
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
