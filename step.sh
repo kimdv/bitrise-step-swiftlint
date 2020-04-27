@@ -38,23 +38,24 @@ case $reporter in
 esac
 
 report_path="${BITRISE_DEPLOY_DIR}/${filename}"
-swiftlint_output=""
 
 case $lint_range in 
-"changed")
-  git diff --name-only -- '*.swift' | while read filename; 
-  do 
-    $swiftlint_output=$swiftlint_output(swiftlint lint --path "${filename}" --reporter "${reporter}" "${flags}");
-  done
-  ;;
-"all") 
-  $swiftlint_output$=(swiftlint lint --reporter "${reporter}" ${FLAGS})
-  ;;
+  "changed")
+  echo "Linting diff only"
+    git diff --name-only -- '*.swift' | while read filename; 
+    do 
+      swiftlint_output+=$"$(swiftlint lint --path "${filename}" --reporter "${reporter}" "${flags}")"
+    done
+    ;;
+  
+  "all") 
+    echo "Linting all files"
+    swiftlint_output="$(swiftlint lint --reporter "${reporter}" ${FLAGS})"
+    ;;
 esac
 
 # This will set the `swiftlint_output` in `SWIFTLINT_REPORT` env variable. 
 # so it can be used to send in Slack etc. 
-output="$(swiftlint lint --reporter "${reporter}" ${FLAGS})"
 envman add --key "SWIFTLINT_REPORT" --value "${swiftlint_output}"
 echo "Saved swiftlint output in SWIFTLINT_REPORT"
 
@@ -62,4 +63,5 @@ echo "Saved swiftlint output in SWIFTLINT_REPORT"
 # so it can be used in other tasks
 echo "${swiftlint_output}" > $report_path
 envman add --key "SWIFTLINT_REPORT_PATH" --value "${report_path}"
-echo "Saved swiftlint output in file"
+echo "Saved swiftlint output in file at path SWIFTLINT_REPORT_PATH"
+ 
