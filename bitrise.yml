@@ -34,6 +34,7 @@ workflows:
         - lint_range: all
         - lint_config_file: $BITRISE_SOURCE_DIR/TestConfig/.swiftlint.yml
         - reporter: html
+        - report_file: my_chosen_name
 
   # ----------------------------------------------------------------
   # --- workflows to Share this step into a Step Library

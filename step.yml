@@ -92,6 +92,16 @@ inputs:
       value_options:
       - "yes"
       - "no"
+
+  - report_file: "swiftlint_report"
+    opts:
+      category: Config
+      description: |-
+        This will be used as a report file name. Please don't put the extension here. The extension will be determined depending on the reporter that you choose. The default is `swiftlint_report`.
+      is_required: true
+      summary: "The report file name, without extension."
+      title: "The report file name, without extension."
+
 outputs:
   - SWIFTLINT_REPORT: null
     opts:
@@ -103,7 +113,7 @@ outputs:
   - SWIFTLINT_REPORT_PATH: null
     opts:
       title: A Swiftlint report path
-      summary: The path to the generated Swiftlint report (by default, it is created by concatenating the $BITRISE_DEPLOY_DIR with the generated report file name. The file name depends on the reporter that was selected, for example for the `junit` reporter, the generated file name will be `swiftlint_report.xml`, and for the `html` reporter it will be `swiftlint_report.html`). This is useful if you want to have this report in a separate file and do something with it, for example upload to S3.
-      description: The path to the generated Swiftlint report (by default, it is created by concatenating the `$BITRISE_DEPLOY_DIR` with the generated report file name. The file name depends on the reporter that was selected, for example for the `junit` reporter, the generated file name will be `swiftlint_report.xml`, and for the `html` reporter it will be `swiftlint_report.html`). This is useful if you want to have this report in a separate file and do something with it, for example upload to S3.
+      summary: The path to the generated Swiftlint report (by default, it is created by concatenating the `$BITRISE_DEPLOY_DIR` with the report_file you provide as one of the inputs to this step. The file name depends on the reporter that was selected, for example for the `junit` reporter, the generated file name will have the extension `xml`, and for the `html` reporter it will be `html`). This is useful if you want to have this report in a separate file and do something with it, for example upload to S3.
+      description: The path to the generated Swiftlint report (by default, it is created by concatenating the `$BITRISE_DEPLOY_DIR` with the report_file you provide as one of the inputs to this step. The file name depends on the reporter that was selected, for example for the `junit` reporter, the generated file name will have the extension `xml`, and for the `html` reporter it will be `html`). This is useful if you want to have this report in a separate file and do something with it, for example upload to S3.
       is_dont_change_value: true
       category: Output

@@ -38,7 +38,7 @@ case $lint_range in
   envman add --key "SWIFTLINT_REPORT" --value "${output}"
   echo "Saved swiftlint output in SWIFTLINT_REPORT"
 
-  filename="swiftlint_report"
+  filename="${report_file}"
   case $reporter in
       xcode|emoji)
         filename="${filename}.txt"
