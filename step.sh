@@ -1,15 +1,4 @@
 #!/bin/bash
-set -ex
-
-run_swiftlint() {
-    local filename="${1}"
-    local reporter="${2}"
-    local flags="${3}"
-
-    if [[ "${filename##*.}" == "swift" ]]; then
-        swiftlint lint --path "${filename}" --reporter "${reporter}" "${flags}"
-    fi
-}
 
 if [ -z "${linting_path}" ] ; then
   echo " [!] Missing required input: linting_path"
@@ -29,12 +18,48 @@ fi
 
 cd "${linting_path}"
 
+filename="swiftlint_report"
+case $reporter in
+    xcode|emoji)
+      filename="${filename}.txt"
+      ;;
+    markdown)
+      filename="${filename}.md"
+      ;;
+    csv|html)
+      filename="${filename}.${reporter}"
+      ;;
+    checkstyle|junit)
+      filename="${filename}.xml"
+      ;;
+    json|sonarqube)
+      filename="${filename}.json"
+      ;;
+esac
+
+report_path="${BITRISE_DEPLOY_DIR}/${filename}"
+swiftlint_output=""
+
 case $lint_range in 
 "changed")
-  git diff --name-only | while read filename; do run_swiftlint "${filename}" "${reporter}" "${FLAGS}"; done
-  git diff --cached --name-only | while read filename; do run_swiftlint "${filename}" "${FLAGS}"; done 
+  git diff --name-only -- '*.swift' | while read filename; 
+  do 
+    $swiftlint_output=$swiftlint_output(swiftlint lint --path "${filename}" --reporter "${reporter}" "${flags}");
+  done
   ;;
 "all") 
-  swiftlint lint --reporter "${reporter}" ${FLAGS}
+  $swiftlint_output$=(swiftlint lint --reporter "${reporter}" ${FLAGS})
   ;;
 esac
+
+# This will set the `swiftlint_output` in `SWIFTLINT_REPORT` env variable. 
+# so it can be used to send in Slack etc. 
+output="$(swiftlint lint --reporter "${reporter}" ${FLAGS})"
+envman add --key "SWIFTLINT_REPORT" --value "${swiftlint_output}"
+echo "Saved swiftlint output in SWIFTLINT_REPORT"
+
+# This will print the `swiftlint_output` into a file and set the envvariable
+# so it can be used in other tasks
+echo "${swiftlint_output}" > $report_path
+envman add --key "SWIFTLINT_REPORT_PATH" --value "${report_path}"
+echo "Saved swiftlint output in file"
