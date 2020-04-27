@@ -55,7 +55,8 @@ case $lint_range in
 
   report_path="${BITRISE_DEPLOY_DIR}/${filename}"
 
-  echo "Saved swiftlint output in file, it's path is saved in ${report_path}"
   swiftlint lint --reporter "${reporter}" ${FLAGS} > $report_path
+  
+  echo "Saved swiftlint output in file, it's path is saved in ${report_path}"
   ;;
 esac
