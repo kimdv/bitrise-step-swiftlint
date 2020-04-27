@@ -103,7 +103,7 @@ outputs:
   - SWIFTLINT_REPORT_PATH: null
     opts:
       title: A Swiftlint report path
-      summary: The path to the generated Swiftlint report ($BITRISE_DEPLOY_DIR by default). This is useful if you want to have this report in a separate file and do something with it, for example upload to S3.
-      description: The path to the generated Swiftlint report ($BITRISE_DEPLOY_DIR by default). This is useful if you want to have this report in a separate file and do something with it, for example upload to S3.
+      summary: The path to the generated Swiftlint report (by default, it is created by concatenating the $BITRISE_DEPLOY_DIR with the generated report file name. The file name depends on the reporter that was selected, for example for the `junit` reporter, the generated file name will be `swiftlint_report.xml`, and for the `html` reporter it will be `swiftlint_report.html`). This is useful if you want to have this report in a separate file and do something with it, for example upload to S3.
+      description: The path to the generated Swiftlint report (by default, it is created by concatenating the $BITRISE_DEPLOY_DIR with the generated report file name. The file name depends on the reporter that was selected, for example for the `junit` reporter, the generated file name will be `swiftlint_report.xml`, and for the `html` reporter it will be `swiftlint_report.html`). This is useful if you want to have this report in a separate file and do something with it, for example upload to S3.
       is_dont_change_value: true
       category: Output

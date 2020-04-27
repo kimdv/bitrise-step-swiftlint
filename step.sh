@@ -37,7 +37,26 @@ case $lint_range in
   output="$(swiftlint lint --reporter "${reporter}" ${FLAGS})"
   envman add --key "SWIFTLINT_REPORT" --value "${output}"
   echo "Saved swiftlint output in SWIFTLINT_REPORT"
-  filename="swiftlint_report.${reporter}"
+
+  filename="swiftlint_report"
+  case $reporter in
+      xcode|emoji)
+        filename="${filename}.txt"
+        ;;
+      markdown)
+        filename="${filename}.md"
+        ;;
+      csv|html)
+        filename="${filename}.${reporter}"
+        ;;
+      checkstyle|junit)
+        filename="${filename}.xml"
+        ;;
+      json|sonarqube)
+        filename="${filename}.json"
+        ;;
+  esac
+
   report_path="${BITRISE_DEPLOY_DIR}/${filename}"
   echo "${output}" > $report_path
   envman add --key "SWIFTLINT_REPORT_PATH" --value "${report_path}"
