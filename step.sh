@@ -64,3 +64,5 @@ echo "Saved swiftlint output in SWIFTLINT_REPORT"
 echo "${swiftlint_output}" > $report_path
 envman add --key "SWIFTLINT_REPORT_PATH" --value "${report_path}"
 echo "Saved swiftlint output in file at path SWIFTLINT_REPORT_PATH"
+
+echo "a\nb"
