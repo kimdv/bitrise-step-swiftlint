@@ -57,7 +57,6 @@ esac
 
 # This will set the `swiftlint_output` in `SWIFTLINT_REPORT` env variable. 
 # so it can be used to send in Slack etc. 
-output="$(swiftlint lint --reporter "${reporter}" ${FLAGS})"
 envman add --key "SWIFTLINT_REPORT" --value "${swiftlint_output}"
 echo "Saved swiftlint output in SWIFTLINT_REPORT"
 
