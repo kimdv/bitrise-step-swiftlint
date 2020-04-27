@@ -44,7 +44,7 @@ case $lint_range in
   echo "Linting diff only"
     git diff --name-only -- '*.swift' | while read filename; 
     do 
-      swiftlint_output+="$(swiftlint lint --path "${filename}" --reporter "${reporter}" "${flags}")"
+      swiftlint_output+="\n$(swiftlint lint --path "${filename}" --reporter "${reporter}" "${flags}")"
     done
     ;;
   
