@@ -53,10 +53,13 @@ case $lint_range in
         ;;
   esac
 
-  report_path="${BITRISE_DEPLOY_DIR}/${filename}"
-
-  swiftlint lint --reporter "${reporter}" ${FLAGS} > $report_path
+  report_path="${BITRISE_DEPLOY_DIR}/${filename}" 
+  output="$(swiftlint lint --reporter "${reporter}" ${FLAGS})"
   
+  envman add --key "SWIFTLINT_REPORT" --value "${output}"
+  echo "Saved Swiftlint output to SWIFTLINT_REPORT"
+  
+  output > report_path
   echo "Saved swiftlint output in file, it's path is saved in ${report_path}"
   ;;
 esac
