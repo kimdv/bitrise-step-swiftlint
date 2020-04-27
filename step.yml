@@ -41,7 +41,7 @@ inputs:
       description: ""
       is_required: true
 
-  - lint_range:
+  - lint_range: all
     opts:
       category: Config
       title: "Select option for range of Swiftlint"
