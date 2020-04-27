@@ -44,7 +44,7 @@ case $lint_range in
 "changed")
   git diff --name-only -- '*.swift' | while read filename; 
   do 
-    $swiftlint_output=$swiftlint_output(swiftlint lint --path "${filename}" --reporter "${reporter}" "${flags}");
+    $swiftlint_output+=(swiftlint lint --path "${filename}" --reporter "${reporter}" "${flags}")
   done
   ;;
 "all") 
