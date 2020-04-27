@@ -59,7 +59,7 @@ case $lint_range in
   envman add --key "SWIFTLINT_REPORT" --value "${output}"
   echo "Saved Swiftlint output to SWIFTLINT_REPORT"
   
-  echo $output > report_path
+  echo "${filename}" > report_path
   echo "Saved swiftlint output in file, it's path is saved in ${report_path}"
   ;;
 esac
