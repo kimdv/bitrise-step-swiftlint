@@ -7,9 +7,9 @@ app:
   - A_SECRET_PARAM: $A_SECRET_PARAM
   # If you want to share this step into a StepLib
   - BITRISE_STEP_ID: swiftlint
-  - BITRISE_STEP_VERSION: "0.4.1"
-  - BITRISE_STEP_GIT_CLONE_URL: https://github.com/kimdv/bitrise-step-swiftlint
   - MY_STEPLIB_REPO_FORK_GIT_URL: $MY_STEPLIB_REPO_FORK_GIT_URL
+  - BITRISE_STEP_VERSION: "0.6.0"
+  - BITRISE_STEP_GIT_CLONE_URL: https://github.com/kimdv/bitrise-step-swiftlint.git
 
 workflows:
   test:
@@ -24,11 +24,15 @@ workflows:
         run_if: true
         inputs:
         - path: ./Test
+
     - path::./:
         title: Step Test
         description: |-
           Running the Swiftlint test
         run_if: true
+        inputs:
+        - linting_path: .
+        - lint_range: all
 
   # ----------------------------------------------------------------
   # --- workflows to Share this step into a Step Library
