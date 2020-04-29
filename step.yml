@@ -92,6 +92,18 @@ inputs:
       value_options:
       - "yes"
       - "no"
+      
+  - quiet: "no"
+    opts:
+      category: Config
+      description: |-
+        Use quiet mode when linting (i.e. only violations are listed in logs)
+      is_required: false
+      summary: ""
+      title: Use quiet mode
+      value_options:
+      - "yes"
+      - "no"
 outputs:
 - SWIFTLINT_REPORT: null
   opts:

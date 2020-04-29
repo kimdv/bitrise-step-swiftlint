@@ -12,6 +12,10 @@ if [ "${strict}" = "yes" ] ; then
   FLAGS=$FLAGS' --strict'
 fi
 
+if [ "${quiet}" = "yes" ] ; then
+  FLAGS=$FLAGS' --quiet'
+fi
+
 if [ -s "${lint_config_file}" ] ; then
   FLAGS=$FLAGS' --config '"${lint_config_file}"  
 fi
