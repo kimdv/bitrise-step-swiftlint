@@ -52,7 +52,7 @@ case $lint_range in
 
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
-      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" "${flags}")"
+      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" "${FLAGS}")"
     done
     ;;
   
