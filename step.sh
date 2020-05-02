@@ -6,17 +6,19 @@ if [ -z "${linting_path}" ] ; then
   exit 1
 fi
 
-FLAGS='--reporter '"${reporter}"
+FLAGS=''
 
 if [ -s "${lint_config_file}" ] ; then
   FLAGS=$FLAGS' --config '"${lint_config_file}"  
 fi
 
 if [ "${strict}" = "yes" ] ; then
+  echo "Running strict mode"
   FLAGS=$FLAGS' --strict'
 fi
 
 if [ "${quiet}" = "yes" ] ; then
+  echo "Running quiet mode"
   FLAGS=$FLAGS' --quiet'  
 fi
 
@@ -49,15 +51,17 @@ case $lint_range in
   echo "Linting diff only"
     files=$(git diff HEAD^ --name-only -- '*.swift')
 
+    echo $files
+
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
-      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" "${FLAGS}")"
+      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" --reporter ${reporter} "${FLAGS}")"
     done
     ;;
   
   "all") 
     echo "Linting all files"
-    swiftlint_output="$(swiftlint lint ${FLAGS})"
+    swiftlint_output="$(swiftlint lint --reporter ${reporter} ${FLAGS})"
     ;;
 esac
 
