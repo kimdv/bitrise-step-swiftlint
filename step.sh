@@ -6,7 +6,7 @@ if [ -z "${linting_path}" ] ; then
   exit 1
 fi
 
-FLAGS=''#'--reporter '"${reporter}"
+FLAGS=''
 
 if [ -s "${lint_config_file}" ] ; then
   FLAGS=$FLAGS' --config '"${lint_config_file}"  
@@ -55,13 +55,13 @@ case $lint_range in
 
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
-      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" "${FLAGS}")"
+      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" --reporter ${reporter} "${FLAGS}")"
     done
     ;;
   
   "all") 
     echo "Linting all files"
-    swiftlint_output="$(swiftlint lint ${FLAGS})"
+    swiftlint_output="$(swiftlint lint --reporter ${reporter} ${FLAGS})"
     ;;
 esac
 
