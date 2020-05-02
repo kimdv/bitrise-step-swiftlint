@@ -8,17 +8,18 @@ fi
 
 FLAGS='--reporter '"${reporter}"
 
-if [ "${strict}" = "yes" ] ; then
-  FLAGS=$FLAGS' --strict'
-fi
-
 if [ -s "${lint_config_file}" ] ; then
   FLAGS=$FLAGS' --config '"${lint_config_file}"  
 fi
 
-if [ -s "${quiet}" = "yes" ] ; then
+if [ "${strict}" = "yes" ] ; then
+  FLAGS=$FLAGS' --strict'
+fi
+
+if [ "${quiet}" = "yes" ] ; then
   FLAGS=$FLAGS' --quiet'  
 fi
+
 
 cd "${linting_path}"
 
@@ -47,8 +48,6 @@ case $lint_range in
   "changed")
   echo "Linting diff only"
     files=$(git diff HEAD^ --name-only -- '*.swift')
-
-    echo $files
 
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
