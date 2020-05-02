@@ -13,10 +13,12 @@ if [ -s "${lint_config_file}" ] ; then
 fi
 
 if [ "${strict}" = "yes" ] ; then
+  echo "Running strict mode"
   FLAGS=$FLAGS' --strict'
 fi
 
 if [ "${quiet}" = "yes" ] ; then
+  echo "Running quiet mode"
   FLAGS=$FLAGS' --quiet'  
 fi
 
