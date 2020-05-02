@@ -16,6 +16,10 @@ if [ -s "${lint_config_file}" ] ; then
   FLAGS=$FLAGS' --config '"${lint_config_file}"  
 fi
 
+if [ -s "${quiet}" = "yes"] ; then
+  FLAGS=$FLAGS' --quiet'  
+fi
+
 cd "${linting_path}"
 
 filename="swiftlint_report"
