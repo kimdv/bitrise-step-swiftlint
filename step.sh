@@ -8,17 +8,17 @@ fi
 
 FLAGS='--reporter '"${reporter}"
 
-if [ -s "${lint_config_file}" ] ; then
-  FLAGS=$FLAGS' --config '"${lint_config_file}"  
-fi
+# if [ -s "${lint_config_file}" ] ; then
+#   FLAGS=$FLAGS' --config '"${lint_config_file}"  
+# fi
 
-if [ "${strict}" = "yes" ] ; then
-  FLAGS=$FLAGS' --strict'
-fi
+# if [ "${strict}" = "yes" ] ; then
+#   FLAGS=$FLAGS' --strict'
+# fi
 
-if [ "${quiet}" = "yes" ] ; then
-  FLAGS=$FLAGS' --quiet'  
-fi
+# if [ "${quiet}" = "yes" ] ; then
+#   FLAGS=$FLAGS' --quiet'  
+# fi
 
 
 cd "${linting_path}"
@@ -53,7 +53,7 @@ case $lint_range in
 
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
-      swiftlint_output+=$"$(swiftlint lint --path "$swift_file")"
+      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" "${FLAGS}")"
     done
     ;;
   
