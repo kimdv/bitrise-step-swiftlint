@@ -7,7 +7,7 @@ app:
   - A_SECRET_PARAM: $A_SECRET_PARAM
   # If you want to share this step into a StepLib
   - BITRISE_STEP_ID: swiftlint
-  - BITRISE_STEP_VERSION: "0.6.0"
+  - BITRISE_STEP_VERSION: "0.7.0"
   - BITRISE_STEP_GIT_CLONE_URL: https://github.com/kimdv/bitrise-step-swiftlint.git
   - MY_STEPLIB_REPO_FORK_GIT_URL: git@private-github.com:kimdv/bitrise-steplib.git
 
