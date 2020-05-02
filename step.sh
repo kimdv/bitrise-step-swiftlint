@@ -49,9 +49,11 @@ case $lint_range in
   echo "Linting diff only"
     files=$(git diff HEAD^ --name-only -- '*.swift')
 
+    echo $files
+
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
-      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" "${FLAGS}")"
+      swiftlint_output+=$"$(swiftlint lint --path "$swift_file")"
     done
     ;;
   
