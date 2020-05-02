@@ -6,19 +6,19 @@ if [ -z "${linting_path}" ] ; then
   exit 1
 fi
 
-FLAGS='--reporter '"${reporter}"
+FLAGS=''#'--reporter '"${reporter}"
 
-# if [ -s "${lint_config_file}" ] ; then
-#   FLAGS=$FLAGS' --config '"${lint_config_file}"  
-# fi
+if [ -s "${lint_config_file}" ] ; then
+  FLAGS=$FLAGS' --config '"${lint_config_file}"  
+fi
 
-# if [ "${strict}" = "yes" ] ; then
-#   FLAGS=$FLAGS' --strict'
-# fi
+if [ "${strict}" = "yes" ] ; then
+  FLAGS=$FLAGS' --strict'
+fi
 
-# if [ "${quiet}" = "yes" ] ; then
-#   FLAGS=$FLAGS' --quiet'  
-# fi
+if [ "${quiet}" = "yes" ] ; then
+  FLAGS=$FLAGS' --quiet'  
+fi
 
 
 cd "${linting_path}"
