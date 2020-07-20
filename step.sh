@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+set -o pipefail
+
 if [ -z "${linting_path}" ] ; then
   echo " [!] Missing required input: linting_path"
 
