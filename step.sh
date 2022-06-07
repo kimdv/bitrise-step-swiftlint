@@ -57,7 +57,7 @@ case $lint_range in
 
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
-      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" --reporter ${reporter} "${FLAGS}")"
+      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" --reporter ${reporter} ${FLAGS})"
       lint_code=$?
       if [[ lint_code -ne 0 ]]; then 
         swiftlint_exit_code=${lint_code}
