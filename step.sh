@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -e
 set -o pipefail
 
 if [ -z "${linting_path}" ] ; then
@@ -59,12 +58,17 @@ case $lint_range in
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
       swiftlint_output+=$"$(swiftlint lint --path "$swift_file" --reporter ${reporter} "${FLAGS}")"
+      lint_code=$?
+      if [[ lint_code -ne 0 ]]; then 
+        swiftlint_exit_code=${lint_code}
+      fi
     done
     ;;
   
   "all") 
     echo "Linting all files"
     swiftlint_output="$(swiftlint lint --reporter ${reporter} ${FLAGS})"
+    swiftlint_exit_code=$?
     ;;
 esac
 
@@ -78,4 +82,5 @@ echo "Saved swiftlint output in SWIFTLINT_REPORT"
 echo "${swiftlint_output}" > $report_path
 envman add --key "SWIFTLINT_REPORT_PATH" --value "${report_path}"
 echo "Saved swiftlint output in file at path SWIFTLINT_REPORT_PATH"
- 
+
+exit ${swiftlint_exit_code}
