@@ -51,11 +51,11 @@ report_path="${BITRISE_DEPLOY_DIR}/${filename}"
 case $lint_range in 
   "changed")
   echo "Linting diff only"
-    files=$(git diff HEAD^ --name-only -- '*.swift')
+    files=$(git diff HEAD^ --name-only --diff-filter=d -- '*.swift')
 
     echo $files
 
-    for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
+    for swift_file in $(git diff HEAD^ --name-only --diff-filter=d -- '*.swift')
     do 
       swiftlint_output+=$"$(swiftlint lint --path "$swift_file" --reporter ${reporter} ${FLAGS})"
       lint_code=$?
