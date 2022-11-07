@@ -2,16 +2,15 @@
 
 set -o pipefail
 
-if [ -z "${linting_path}" ] ; then
-  echo " [!] Missing required input: linting_path"
-
-  exit 1
+if [ -n "${linting_path}" ] ; then
+  echo "Changing directory to ${linting_path}"
+  cd "${linting_path}"
 fi
 
 FLAGS=''
 
 if [ -s "${lint_config_file}" ] ; then
-  FLAGS=$FLAGS' --config '"${lint_config_file}"  
+  FLAGS=$FLAGS' --config '"${lint_config_file}"
 fi
 
 if [ "${strict}" = "yes" ] ; then
@@ -23,9 +22,6 @@ if [ "${quiet}" = "yes" ] ; then
   echo "Running quiet mode"
   FLAGS=$FLAGS' --quiet'  
 fi
-
-
-cd "${linting_path}"
 
 filename="swiftlint_report"
 case $reporter in

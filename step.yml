@@ -33,13 +33,14 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  - linting_path:
+  - linting_path: $BITRISE_SOURCE_DIR
     opts:
       category: Config
       title: "Select the path where Swiftlint should lint"
       summary: ""
-      description: ""
-      is_required: true
+      description: |-
+        If you use a custom directory on Bitrise, you can specify the path here.
+      is_required: false
 
   - lint_range: all
     opts:
